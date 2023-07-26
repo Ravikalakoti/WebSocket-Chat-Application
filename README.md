@@ -15,3 +15,6 @@ This project is a simple chat application implemented in Django, showcasing the 
 3-Configure the Django settings and set up the Channels layer.<br>
 4-Run the development server: python manage.py runserver<br>
 5-Open your browser and visit http://127.0.0.1:8000/ to access the chat application.<br>
+
+# Chat conversation screen for single chat room
+<img src="https://github.com/Ravikalakoti/WebSocket-Chat-Application/blob/main/mywebsocketproject/images/Screenshot%20from%202023-07-26%2011-49-28.png">
