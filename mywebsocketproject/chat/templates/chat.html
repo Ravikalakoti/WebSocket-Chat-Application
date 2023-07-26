@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebSocket Chat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #chat-log {
+            border: 1px solid #ccc;
+            padding: 10px;
+            height: 200px;
+            overflow-y: auto;
+        }
+
+        #chat-message-input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        #chat-message-submit {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        #chat-message-submit:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>WebSocket Chat</h1>
+    <div id="chat-log"></div>
+    <input id="chat-message-input" type="text" placeholder="Type your message...">
+    <button id="chat-message-submit">Send</button>
+
+    <script>
+        const chatLog = document.querySelector('#chat-log');
+        const messageInput = document.querySelector('#chat-message-input');
+        const messageSubmit = document.querySelector('#chat-message-submit');
+
+        const wsProtocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
+        const wsPath = `${wsProtocol}://${window.location.host}/ws/chat/`;
+
+        const socket = new WebSocket(wsPath);
+
+        socket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+            const message = data.message;
+            chatLog.innerHTML += `<p><strong>You:</strong> ${message}</p>`;
+            chatLog.scrollTop = chatLog.scrollHeight;
+        };
+
+        messageSubmit.onclick = function(e) {
+            const message = messageInput.value;
+            socket.send(JSON.stringify({'message': message}));
+            messageInput.value = '';
+        };
+    </script>
+</body>
+</html>
