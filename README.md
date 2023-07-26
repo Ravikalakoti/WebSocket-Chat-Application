@@ -8,6 +8,7 @@ This project is a simple chat application implemented in Django, showcasing the 
 4-Demonstrates the use of asynchronous features in Django for handling WebSocket connections.<br>
 5-Built as a learning project to explore Django Channels and WebSocket implementation in Django.<br>
 
+=======
 # How to Run:
 1-Clone the repository: git clone https://github.com/Ravikalakoti/WebSocket-Chat-Application<br>
 2-Install the required packages: pip install -r requirements.txt<br>
